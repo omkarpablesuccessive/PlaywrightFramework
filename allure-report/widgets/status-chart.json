@@ -1,0 +1,1 @@
+[{"uid":"902f02dd4aec1793","name":"Login into Para Bank with Valid Credentials","time":{"start":1680612323335,"stop":1680612336930,"duration":13595},"status":"failed","severity":"normal"},{"uid":"8f96d53659032669","name":"Login into Para Bank with Invalid Credentials","time":{"start":1680602645074,"stop":1680602653757,"duration":8683},"status":"passed","severity":"normal"}]

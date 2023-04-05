@@ -1,0 +1,41 @@
+{
+  "name": "playwrightframework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test:me": "playwright test --project chromium --headed --workers=1",
+    "posttest:spec": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "pretest:spec":"rm -rf allure-results && mkdir allure-results",
+
+    "test-play": "npx playwright test --project chromium --headed --workers=1",
+    "test:spec": "npx playwright test para_bank.spec.js --project chromium --headed --workers=1 ",
+    "test:report": "npx playwright show-report",
+    "test:e2e": "cucumber-js --require cucumber.conf.js --require tests/src/ui_test/step_definition/testDemo_step.js",
+    
+    "test:single": "npx playwright test -g 'Title' --project chromium --headed",
+    "test:parallel": "npx playwright test --grep @Smoke --project chromium --headed",
+    "test:seriel": "npx playwright test --grep @Smoke workers=1 --project chromium --headed",
+    "test:record": "npx playwright codegen",
+    "test:api": "playwright test --config.api.js --project chromium "
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.0.1",
+    "@playwright/test": "^1.32.0",
+    "allure-commandline": "^2.21.0",
+    "allure-playwright": "^2.1.0",
+    "chai": "4.3.6",
+    "prettier": "2.7.1"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": ""
+}
