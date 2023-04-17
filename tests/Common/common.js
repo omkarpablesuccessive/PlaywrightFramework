@@ -1,6 +1,8 @@
 const testVariables= {
     loginSuccessfulMessage : '',
-    loginErrorMessage:''
+    loginErrorMessage:'',
+    nativeTitle:'',
+    listOfElements:[]
     
 }
 module.exports={testVariables}

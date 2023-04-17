@@ -1,23 +1,20 @@
 {
   "name": "playwrightframework",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "commonjs",
+  "main": "in",
   "scripts": {
-    "test:me": "playwright test --project chromium --headed --workers=1",
-    "posttest:spec": "allure generate allure-results --clean -o allure-report && allure open allure-report",
-    "pretest:spec":"rm -rf allure-results && mkdir allure-results",
-
-    "test-play": "npx playwright test --project chromium --headed --workers=1",
-    "test:spec": "npx playwright test para_bank.spec.js --project chromium --headed --workers=1 ",
+    "test": "cucumber-js --require cucumber.js",
+    "test:e2e": "playwright test --headed",
+    "test:spec": "npx playwright test playwrightActions.spec.js --project chromium --headed --workers=1 ",
+    "test:api": "npx playwright test demo_getAPI.spec.js --project chromium --headed --workers=1",
+    "posttest:e2e": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "pretest:e2e": "rm -rf allure-results && mkdir allure-results",
     "test:report": "npx playwright show-report",
-    "test:e2e": "cucumber-js --require cucumber.conf.js --require tests/src/ui_test/step_definition/testDemo_step.js",
-    
+    "test:bdd": "cucumber-js --require cucumber.conf.js --require tests/src/ui_test/step_definition/testDemo_step.js --format @cucumber/pretty-formatter",
     "test:single": "npx playwright test -g 'Title' --project chromium --headed",
     "test:parallel": "npx playwright test --grep @Smoke --project chromium --headed",
     "test:seriel": "npx playwright test --grep @Smoke workers=1 --project chromium --headed",
-    "test:record": "npx playwright codegen",
-    "test:api": "playwright test --config.api.js --project chromium "
+    "test:record": "npx playwright codegen"
   },
   "repository": {
     "type": "git",
@@ -32,10 +29,11 @@
     "allure-commandline": "^2.21.0",
     "allure-playwright": "^2.1.0",
     "chai": "4.3.6",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "ts-node": "10.9.1"
   },
-  "directories": {
-    "test": "tests"
-  },
-  "description": ""
+  "description": "",
+  "dependencies": {
+        "graphql-request": "^5.2.0"
+  }
 }

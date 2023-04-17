@@ -45,6 +45,7 @@ module.exports = defineConfig({
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
      baseURL: 'https://reqres.in',
+     //'https://graphql.anilist.co',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -54,6 +55,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'chromium',
+      
       /*
       (chrome browser conf)
       channel='chrome', 
@@ -69,18 +71,23 @@ module.exports = defineConfig({
       video: 'retain-on-failure'
      */
 
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'],
+      screenshot: 'only-on-failure',
+      // video: 'retain-on-failure' },
+    },
+  },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'],
+      screenshot: 'only-on-failure' 
+    },
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'],
+      screenshot: 'only-on-failure' },
+    },
 
     /* Test against mobile viewports. */
     // {
@@ -101,6 +108,7 @@ module.exports = defineConfig({
     //   name: 'Google Chrome',
     //   use: { channel: 'chrome' },
     // },
+  // @ts-ignore
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
