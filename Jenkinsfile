@@ -1,24 +1,28 @@
 pipeline {
-    agent any
-    stages {
-        stage('Create browsers directory') {
-            steps {
-                sh 'mkdir -p $WORKSPACE/browsers'
-            }
-        }
-        stage('Install dependencies') {
-            steps {
-                withEnv(["PLAYWRIGHT_BROWSERS_PATH=$WORKSPACE/browsers"]) {
-                    sh 'npm install && npx playwright install'
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                withEnv(["PLAYWRIGHT_BROWSERS_PATH=$WORKSPACE/browsers"]) {
-                    sh 'npx playwright test'
-                }
-            }
-        }
+  agent any
+    
+  }
+  stages {
+    stage('install playwright') {
+      steps {
+        sh '''
+          npm i -D @playwright/test
+          npx playwright install
+        '''
+      }
     }
-}
+    
+    stage('test') {
+      steps {
+        sh '''
+          npx playwright test
+        '''
+      }
+      post {
+        success {
+          archiveArtifacts(artifacts: 'homepage-*.png', followSymlinks: false)
+          sh 'rm -rf *.png'
+        }
+      }
+    }
+  }
