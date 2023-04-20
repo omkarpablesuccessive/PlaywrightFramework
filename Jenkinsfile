@@ -4,7 +4,7 @@ pipeline {
       stage('e2e-tests') {
          steps {
             // Depends on your language / test framework
-            sh 'npm install'
+            bat 'npm install'
            // sh 'npx playwright test'
          }
       }
