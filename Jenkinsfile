@@ -1,25 +1,19 @@
 pipeline {
-  agent any 
-  stages {
-    stage('install playwright') {
-      steps {
-        sh '''
-          npm install
-        '''
-      }
-    }
-    stage('test') {
-      steps {
-        sh '''
-          npm run test:e2e
-        '''
-      }
-      post {
-        success {
-          archiveArtifacts(artifacts: 'homepage-*.png', followSymlinks: false)
-          sh 'rm -rf *.png'
+    agent any
+    stages {
+        stage('Install dependencies') {
+            steps {
+                withEnv(["PLAYWRIGHT_BROWSERS_PATH=$WORKSPACE/browsers"]) {
+                    sh 'npm install && npx playwright install'
+                }
+            }
         }
-      }
+        stage('Test') {
+            steps {
+                withEnv(["PLAYWRIGHT_BROWSERS_PATH=$WORKSPACE/browsers"]) {
+                    sh 'npx playwright test'
+                }
+            }
+        }
     }
-  }
 }
