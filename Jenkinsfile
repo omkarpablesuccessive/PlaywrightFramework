@@ -5,7 +5,7 @@ pipeline {
          steps {
             // Depends on your language / test framework
             bat 'npm install'
-           // sh 'npx playwright test'
+            bat 'npx playwright test'
          }
       }
    }
