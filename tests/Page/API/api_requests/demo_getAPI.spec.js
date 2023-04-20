@@ -32,7 +32,7 @@ test('Post API test- Assert Responce status',async({request, baseURL})=>{
      let response = await request.put(`${baseURL}/api/users/2`,model.putData)
      let putResponseBody = JSON.parse(await response.text());
      console.log(putResponseBody);
-     expect(response.status()).toBe(205)
+     expect(response.status()).toBe(200)
      expect(putResponseBody.updatedAt).toBeTruthy();
      console.log(putResponseBody);
  })
