@@ -9,8 +9,10 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'npm run test:e2e'
-                 bat 'npm run posttest:e2e'
+                bat 'npx playwright test'
+                bat 'npx allure generate allure-results --clean'
+                step([$class: 'AllureReportPublisher', results: [[path: 'allure-results']]])
+
             }
         }
     }
