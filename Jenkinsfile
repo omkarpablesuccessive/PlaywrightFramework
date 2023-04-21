@@ -5,7 +5,7 @@ pipeline {
          steps {
             // Depends on your language / test framework
             bat 'npm install'
-            bat 'npx playwright test --project chromium'
+            bat 'npx playwright test '
          }
       }
    }
