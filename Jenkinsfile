@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'npx playwright test  playwrightActions.spec.js'
+                bat 'npx playwright test'
             }
         }
     }
