@@ -1,12 +1,17 @@
 pipeline {
    agent any
    stages {
-      stage('e2e-tests') {
+      stage('Install Playwright') {
          steps {
             // Depends on your language / test framework
-            bat 'npm install'
-            bat 'npx playwright test '
+            bat 'npm i -D @playwright/test'
+            bat 'npx playwright install'
          }
       }
+      stage('test') {
+         steps {
+          bat 'npx playwright test'
+        
+         } }
    }
 }
